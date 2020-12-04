@@ -4,18 +4,18 @@ THIS SCRIPT CALL THE RXP2LAS EXECUTABLE USING A INPUT FILE (CONFIGURATION FILE)
 
 **USER SETUP**
 
-1. UPDATE THE PATHS: 
+1. UPDATE THE PATHS (LINES: 50 TO 54): 
                     Executable path\Name_executable.exe
                     RXP files folder
                     Output folder for Laz files
                     Output folder to configuration files
                     
-2. SETUP THE CONFIGURATION FILE IN LINES 35-45, WHICH WILL BE GENERATED AUTOMATICALLY FOR EACH RXP FILE. 
+2. SETUP THE CONFIGURATION FILE IN LINES 60-70, WHICH WILL BE GENERATED AUTOMATICALLY FOR EACH RXP FILE. 
 
 
 COPYRIGHT UNDER MIT LICENSE
 
-Copyright (C) 2019-2020, Mariana Batista Campos, FINNISH GEOSPATIAL INSTITUTE - NATIONAL LAND OF SURVEY
+Copyright (C) 2019-2020, NATIONAL LAND OF SURVEY
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
