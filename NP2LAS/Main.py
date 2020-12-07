@@ -94,11 +94,11 @@ NP=len(LAZCONTENT.x) #SET THE NUMBER OF POINTES
 ExtraBytes=np.empty((NEB,NP), dtype=np.float32); 
 
 #ASSIGNING EXTRA PARAMETERS
-ExtraBytes[0]=(LAZCONTENT.Reflectance)
-ExtraBytes[1]=(LAZCONTENT.Deviation)
+ExtraBytes[0]=(LAZCONTENT.Phi)
+ExtraBytes[1]=(LAZCONTENT.Theta)
 ExtraBytes[2]=(LAZCONTENT.Range)
-ExtraBytes[3]=(LAZCONTENT.Theta)
-ExtraBytes[4]=(LAZCONTENT.Phi)
+ExtraBytes[3]=(LAZCONTENT.Deviation)
+ExtraBytes[4]=(LAZCONTENT.Reflectance)
 
 #CALLING WRITE FUNCTIONS
 WriteLaz.WriteLaz (outputLas, DLLPATH, MAINCONTENT, ExtraBytes)
