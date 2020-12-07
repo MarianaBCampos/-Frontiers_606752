@@ -87,7 +87,7 @@ setattr (MAINCONTENT, 'ExtraBytes_name',  LAZCONTENT.ExtraBytes_name)
 
 
 #DEFINING EXTRA BYTES
-NEB=7; #SET THE NUMBER OF EXTRABYTES
+NEB=5; #SET THE NUMBER OF EXTRABYTES
 NP=len(LAZCONTENT.x) #SET THE NUMBER OF POINTES
 
 #HERE THE EXTRA PARAMETERS WILL BE SAVE AS FLOAT. Please modify MAIN.h and Main.cpp to use other data formats such as short
@@ -99,8 +99,6 @@ ExtraBytes[1]=(LAZCONTENT.Deviation)
 ExtraBytes[2]=(LAZCONTENT.Range)
 ExtraBytes[3]=(LAZCONTENT.Theta)
 ExtraBytes[4]=(LAZCONTENT.Phi)
-ExtraBytes[5]=(LAZCONTENT.Row)
-ExtraBytes[6]=(LAZCONTENT.Column)
 
 #CALLING WRITE FUNCTIONS
 WriteLaz.WriteLaz (outputLas, DLLPATH, MAINCONTENT, ExtraBytes)
