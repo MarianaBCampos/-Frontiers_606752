@@ -46,7 +46,7 @@ import numpy as np
 
 #!!!CHANGE THE PATHS HERE!!!
 DLLPATH=r"Las2Array_StaticLibrary.dll"
-inputLas='SampleData.laz'
+inputLas='SampleData_Tree.laz'
 outputLas='TESTE.laz'
 
 
