@@ -10,10 +10,9 @@
  *
 
   PROGRAMMERS:
-
-    paula.litkey@nls.fi
-	eetu.puttonen@nls.fi 
-	mariana.campos@nls.fi
+  		paula.litkey@nls.fi  - https://orcid.org/0000-0002-8934-6985
+ 		eetu.puttonen@nls.fi - https://orcid.org/0000-0003-0985-4443
+ 		mariana.campos@nls.fi - https://orcid.org/0000-0003-3430-7521
 
   COPYRIGHT UNDER MIT LICENSE:
   
