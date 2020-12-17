@@ -9,8 +9,8 @@
     this file is used by mat2las.cpp and las2mat.cpp
 
   PROGRAMMERS:
-
-    paula.litkey@nls.fi, eetu.puttonen@nls.fi 
+              paula.litkey@nls.fi  - https://orcid.org/0000-0002-8934-6985
+              eetu.puttonen@nls.fi - https://orcid.org/0000-0003-0985-4443
 
   COPYRIGHT UNDER MIT LICENSE:
 
