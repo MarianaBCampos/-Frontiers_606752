@@ -4,8 +4,8 @@
 %    user is working in Matlab and the current directory (/matlas_tools/Documentation)
 % 
 %   PROGRAMMERS:
-% 
-%     paula.litkey@fgi.fi, eetu.puttonen@fgi.fi - www.fgi.fi
+%   paula.litkey@nls.fi  - https://orcid.org/0000-0002-8934-6985
+%   eetu.puttonen@nls.fi - https://orcid.org/0000-0003-0985-4443
 % 
 % COPYRIGHT UNDER MIT LICENSE:
 %
