@@ -4,8 +4,8 @@
 % In case of errors, please consult the document files in "Documentation" folder.
 % 
 % PROGRAMMERS:
-% 	eetu.puttonen@nls.fi 
-%   paula.litkey@nls.fi
+%   eetu.puttonen@nls.fi - https://orcid.org/0000-0003-0985-4443
+%   paula.litkey@nls.fi  - https://orcid.org/0000-0002-8934-6985
 % 	
 % 
 %   COPYRIGHT UNDER MIT LICENSE:
