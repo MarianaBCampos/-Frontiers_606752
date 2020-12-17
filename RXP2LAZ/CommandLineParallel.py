@@ -15,7 +15,7 @@ THIS SCRIPT CALL THE RXP2LAS EXECUTABLE USING A INPUT FILE (CONFIGURATION FILE)
 
 COPYRIGHT UNDER MIT LICENSE
 
-Copyright (C) 2019-2020, NATIONAL LAND OF SURVEY
+Copyright (C) 2019-2020, NATIONAL LAND SURVEY OF FINLAND
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
