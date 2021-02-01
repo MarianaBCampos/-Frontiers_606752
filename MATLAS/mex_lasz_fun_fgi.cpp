@@ -9,31 +9,19 @@
     this file is used by mat2las.cpp and las2mat.cpp
 
   PROGRAMMERS:
-              paula.litkey@nls.fi  - https://orcid.org/0000-0002-8934-6985
-              eetu.puttonen@nls.fi - https://orcid.org/0000-0003-0985-4443
 
-  COPYRIGHT UNDER MIT LICENSE:
+    paula.litkey@fgi.fi, eetu.puttonen@fgi.fi - www.fgi.fi
+
+  COPYRIGHT:
 
     (c) 2014, Finnish Geodetic Institute
-	(c) 2020, National Land Survey of Finland - Finnish Geospatial Research Institute
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
+    This is free software; you can redistribute and/or modify it under the
+    terms of the GNU Lesser General Licence as published by the Free Software
+    Foundation. See the COPYING file for more information.
 
-	The above copyright notice and this permission notice shall be included in all
-	copies or substantial portions of the Software.
-
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-	SOFTWARE.
+    This software is distributed WITHOUT ANY WARRANTY and without even the
+    implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
   CHANGE HISTORY:
 
@@ -49,7 +37,8 @@
 #ifndef mwIndex
 #define mwIndex int
 #endif
-
+//#include "lasreader.hpp"
+//#include "mex_lasz_fun_fgi.hpp"
 #ifdef _WIN32
         const bool WI=true;
 #else
@@ -273,7 +262,7 @@ BOOL fgiparse(int argc, char *argv[], fgi_options *fgiopts)
         }
         else if (strcmp(argv[i],"-fgi_scale") == 0)
         {
-            // in write without header, set scale to other than default 0.01
+            // in write without header, set scale to other than default 0.01 >> Mariana 2020 - Changed to 0.0001
             fgiopts->set_scale = true;
             *argv[i]='\0';
             if ((i+3) >= argc)
@@ -899,13 +888,6 @@ void read_mex(LASheader *header, LASpoint *point, const mxArray *mexdata) {
             extra_a_num = field_index;
         }*/
 
-       //else if (strcmp(field_name,"Reflectance")==0) {
-       //     extra_a = true;
-       //     extra_a_num = field_index;
-       // }
-
-
-
         else if (strcmp(field_name,"attribute_info")==0) {
             extra_ai = true;
             extra_ai_num = field_index;
@@ -1085,8 +1067,11 @@ void read_mex_hdr(LASheader *header, LASpoint *point, const mxArray *mexhdr, con
             }
 
             else if (strcmp(field_name,"number_attributes")==0) {
-                header->number_attributes = (F64) mxGetScalar(field_array_ptr);
+				header->number_attributes = (F64) mxGetScalar(field_array_ptr);
+				extra_a = true;
+                
             }
+			
 
 
             else if (strcmp(field_name,"variable_length_records")==0 & nvlrs>0){
@@ -1126,10 +1111,10 @@ void read_mex_hdr(LASheader *header, LASpoint *point, const mxArray *mexhdr, con
                 if (header->number_of_variable_length_records != nvlrs) mexWarnMsgTxt("variable length record number changed!");
             }
 
-            else {
-                extra_a = true;
-                extra_a_num = field_index;
-            }
+            //else {
+            //    extra_a = true;
+            //    extra_a_num = field_index;
+            //}
 
 
             if (field_array_ptr == NULL) {
@@ -1140,10 +1125,44 @@ void read_mex_hdr(LASheader *header, LASpoint *point, const mxArray *mexhdr, con
     }
 
     if (extra_a) {
-        const mxArray *extra_field_array_ptr;
+        
+        total_num_of_elements = mxGetNumberOfElements(mexdata);
+        number_of_fields = mxGetNumberOfFields(mexdata);
+    /* Walk through each structure element. */
+        for (field_index=0; field_index<number_of_fields; field_index++)  {
+			
+            field_name = mxGetFieldNameByNumber(mexdata,field_index);
+            mexPrintf("%s %s %s %d\n", "FIELD: ", field_name, "INDEX :", field_index);
+            field_array_ptr = mxGetFieldByNumber(mexdata, 0, field_index);
+            if(field_array_ptr == NULL) {
+                mexPrintf("%s%d\t%s%d\n", "FIELD: ", field_index+1, "STRUCT INDEX :", index+1);
+                mexErrMsgIdAndTxt( "MATLAB:pointstruct:fieldEmpty","Above field is empty!");
+            }
+        datapr = mxGetPr(field_array_ptr);
+        nr = mxGetM(field_array_ptr);
+        nc = mxGetN(field_array_ptr);
+		if (strcmp(field_name,"attribute_info")==0) {
+			extra_a_num = field_index;
+            }
+		}
+		
+		/*const mxArray *extra_field_array_ptr;
         header->clean_attributes();
-        extra_field_array_ptr = mxGetFieldByNumber(mexhdr, 0, extra_a_num);
+        //extra_field_array_ptr = mxGetFieldByNumber(mexhdr, 0, extra_a_num);
+		//add_attributes_to_header(header,extra_field_array_ptr,hdr_info);
+		field_name = mxGetFieldNameByNumber(mexdata,extra_a_num);
+        mexPrintf("%s %s\n", "FIELD: ", field_name);
+        extra_field_array_ptr = mxGetFieldByNumber(mexdata, 0, extra_a_num);
+        add_attributes_to_header(header,extra_field_array_ptr,hdr_info);*/
+		
+		const mxArray *extra_field_array_ptr;
+        header->clean_attributes();
+        field_name = mxGetFieldNameByNumber(mexdata,extra_a_num);
+        //mexPrintf("%s %s\n", "FIELD: ", field_name);
+        extra_field_array_ptr = mxGetFieldByNumber(mexdata, 0, extra_a_num);
         add_attributes_to_header(header,extra_field_array_ptr,hdr_info);
+		
+        
     }
 
     if (header->user_data_in_header !=0) {
@@ -1375,7 +1394,7 @@ int put_attributes(LASheader *header, LASpoint *point, double *pntr, int next, i
     }
     point->set_attribute(header->get_attribute_start(index), temp_i);
   }
-  
+
   else if (header->attributes[index].data_type == 9)
   {
     F32 temp_f;

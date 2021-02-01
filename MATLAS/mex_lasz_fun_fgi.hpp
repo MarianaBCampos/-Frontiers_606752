@@ -9,31 +9,19 @@
     Matlab, this file is used by mex_lasz_fun.cpp, mat2las.cpp and las2mat.cpp
 
   PROGRAMMERS:
-               paula.litkey@nls.fi  - https://orcid.org/0000-0002-8934-6985
-               eetu.puttonen@nls.fi - https://orcid.org/0000-0003-0985-4443
 
-  COPYRIGHT UNDER MIT LICENSE:
+    paula.litkey@fgi.fi - www.fgi.fi
+
+  COPYRIGHT:
 
     (c) 2014, Finnish Geodetic Institute
-	(c) 2020, National Land Survey of Finland - Finnish Geospatial Research Institute
 
-	Permission is hereby granted, free of charge, to any person obtaining a copy
-	of this software and associated documentation files (the "Software"), to deal
-	in the Software without restriction, including without limitation the rights
-	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	copies of the Software, and to permit persons to whom the Software is
-	furnished to do so, subject to the following conditions:
+    This is free software; you can redistribute and/or modify it under the
+    terms of the GNU Lesser General Licence as published by the Free Software
+    Foundation. See the COPYING file for more information.
 
-	The above copyright notice and this permission notice shall be included in all
-	copies or substantial portions of the Software.
-
-	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-	SOFTWARE.
+    This software is distributed WITHOUT ANY WARRANTY and without even the
+    implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
   CHANGE HISTORY:
 
@@ -126,13 +114,13 @@ public:
     fgi_options()
     {
         extra_pass = false;
-        set_scale = false;
+        set_scale = true;
         set_offset = false;
         header = true;
         populate = false;
-        x_scale_factor = 0.01;
-        y_scale_factor = 0.01;
-        z_scale_factor = 0.01;
+        x_scale_factor = 0.0001;
+        y_scale_factor = 0.0001;
+        z_scale_factor = 0.0001;
         x_offset = 0.0;
         y_offset = 0.0;
         z_offset = 0.0;
